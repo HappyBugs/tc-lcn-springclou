@@ -1,0 +1,41 @@
+##################
+# 这个是启动本服务的配置文件，其它的application-xxx.properties 是开发者的个性化配置，不用关心。
+# 你可以在 https://txlcn.org/zh-cn/docs/setting/client.html 看到所有的个性化配置
+#################
+eureka:
+  client:
+    serviceUrl: 
+      defaultZone: http://127.0.0.1:9100/eureka/
+spring: 
+  application: 
+    name: txlcn-demo-spring-service-2
+  datasource: 
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test_tx-lcn_test_wangwu?characterEncoding=UTF-8
+    username: root
+    password: 123456
+    hikari:
+      maximum-pool-size: 20  #最大线程数
+server: 
+  port: 7972
+
+mybatis: 
+#  configuration: 
+#     map-underscore-to-camel-case: true  #开启驼峰
+  config-location: classpath:mybatis/mybatis.cfg.xml    #  mybatis主配置文件所在路径
+#  type-aliases-package:  com.likuncheng.entity   #  定义所有操作类的别名所在包
+  mapper-locations:  classpath:mybatis/mapper/*.xml     #  所有的mapper映射文件
+  
+tx-lcn: 
+  client: 
+    manager-address: 127.0.0.1:9999  #,127.0.0.1:8072tm集群的地址 这里有两个集群地址
+#  springcloud:  
+#    loadbalance: 
+#      enabled: true
+
+
+#
+#ribbon: 
+#  MaxAutoRetriesNextServer: 0
+#  ReadTimeout: 5000
+#  ConnectTimeout: 5000
